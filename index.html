@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Celebration</title>
+
+  <!-- Font Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Sans+Devanagari:wght@100..900&family=Noto+Serif+Bengali:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #8360c3, #2ebf91);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Comic Neue', 'Noto Sans Devanagari', 'Noto Serif Bengali', sans-serif;
+      overflow: hidden;
+    }
+
+    #container {
+      text-align: center;
+      background: pink;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    input[type="password"] {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      width: 200px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 25px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #2ebf91;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #celebration {
+      display: none;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    #celebration img {
+      max-width: 220px;
+      margin-top: 5px;
+      border-radius: 25px;
+      border: 2px solid blue;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>👇🏼Pass = ILU</h2>
+    <input type="password" id="passwordInput" placeholder="Password"/>
+    <br />
+    <button onclick="checkPassword()">Submit</button>
+
+    <div id="celebration">
+      <h2>Bebbluuew🤗💞😂🤣💞!</h2>
+      <p>Ab aya kya Gussa😂❓</p>
+      <img src="Bellu.jpg" alt="Celebration Image" />
+      <p>Lubhh Boohh👻😁❤‍🔥</p>
+    </div>
+
+    <audio id="celebrationAudio">
+      <source src="BelluYippee.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    const correctPassword = "ILU";
+
+    function checkPassword() {
+      const userInput = document.getElementById("passwordInput").value;
+      if (userInput === correctPassword) {
+        document.getElementById("celebration").style.display = "block";
+        document.getElementById("celebrationAudio").play();
+        confettiEffect();
+      } else {
+        alert("Incorrect password. Try again!");
+      }
+    }
+
+    function confettiEffect() {
+  const duration = 6 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    // Left burst
+    confetti({
+      particleCount: 7,
+      angle: 60,
+      spread: 80,
+      origin: { x: 0 },
+      colors: ['#bb0000', '#ffffff', '#00ffcc'],
+    });
+
+    // Right burst
+    confetti({
+      particleCount: 7,
+      angle: 120,
+      spread: 80,
+      origin: { x: 1 },
+      colors: ['#bb0000', '#ffffff', '#00ffcc'],
+    });
+
+    // Center burst
+    confetti({
+      particleCount: 20,
+      spread: 70,
+      origin: { y: 0.6 },
+      scalar: 1.2,
+      ticks: 100,
+      gravity: 0.6,
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
+  </script>
+</body>
+</html>
